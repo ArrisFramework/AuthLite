@@ -1,0 +1,27 @@
+{
+    "name": "karelwintersky/arris.auth-lite",
+    "description": "Arris µFramework - Lite Auth library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karel Wintersky",
+            "email": "karel.wintersky@yandex.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-pdo": "*",
+        "ext-openssl": "*",
+        "ext-redis": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arris\\AuthLite\\": "src/"
+        }
+    },
+    "require-dev": {
+        "rector/rector": "^1.2.1",
+        "karelwintersky/arris.database.lazypdo": "*"
+    }
+}
