@@ -10,11 +10,16 @@ class Config
 
     // Конфиг по умолчанию
     private array $defaultConfig = [
-        'session_key' => 'auth_user_id',
-        'cookie_name' => 'auth_token',
-        'password_hash_algo' => PASSWORD_BCRYPT,
-        'cache_ttl' => 3600,
-        'permissions_table' => 'user_permissions',
+        'session_key'           =>  'auth_user_id',
+        'cookie_name'           =>  'auth_token',
+        'password_hash_algo'    =>  PASSWORD_BCRYPT,
+        'cache_ttl'             =>  3600,
+        'permissions_table'     =>  'user_permissions',
+        'table_prefix'          =>  ''
+    ];
+
+    public array $tables = [
+        'users'     =>  'users'
     ];
 
     /**
@@ -155,6 +160,15 @@ class Config
     public function get(string $key, $default = null)
     {
         return $this->config[$key] ?? $default;
+    }
+
+    public function getTable(string $name):string
+    {
+        if (!array_key_exists($name, $this->tables)) {
+            throw new \RuntimeException("Unknown table [{$name}]");
+        }
+
+        return $this->config['table_prefix'] . $this->tables[$name];
     }
 
 
